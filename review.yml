@@ -1,0 +1,84 @@
+aid: airdna
+name: AirDNA
+review:
+  question: Does AirDNA expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Per API Evangelist scope, HTTP Server-Sent Events (SSE) is in-scope for
+    AsyncAPI modeling. The AirDNA Enterprise API documents no streaming
+    transport at all - neither SSE nor WebSocket - so no AsyncAPI document was
+    authored. The API is a synchronous request/response REST interface.
+findings:
+  summary: |
+    AirDNA does not publish a documented public WebSocket API. The AirDNA
+    Enterprise API (v2.0.0) is a synchronous REST interface served under
+    https://api.airdna.co/api/enterprise/v2, authenticated with a Bearer
+    token obtained from AirDNA sales. All documented operations are HTTPS
+    request/response calls (GET for fetch-by-id, POST for search, explore,
+    metrics, Rentalizer, and Smart Rates). No realtime, bidirectional, push,
+    or audio/event streaming WebSocket (ws:// or wss://) endpoint is
+    documented across Market Data, Property Valuations & Comps, Rentalizer
+    Lead Gen, or Smart Rates Data.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.airdna.co/api/enterprise/v2
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming is documented for any AirDNA endpoint.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the AirDNA Enterprise API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.airdna.co/api/enterprise/v2/market/search
+    - GET  https://api.airdna.co/api/enterprise/v2/market/{marketId}
+    - POST https://api.airdna.co/api/enterprise/v2/country/{countryCode}/markets
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/occupancy
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/revenue
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/adr
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/revpar
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/booking-lead-time
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/length-of-stay
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/active-listings
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/pricing/future
+    - GET  https://api.airdna.co/api/enterprise/v2/submarket/{submarketId}
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/submarkets
+    - POST https://api.airdna.co/api/enterprise/v2/listing/search
+    - POST https://api.airdna.co/api/enterprise/v2/market/{marketId}/listings
+    - POST https://api.airdna.co/api/enterprise/v2/listings/radius
+    - GET  https://api.airdna.co/api/enterprise/v2/listing/{listingId}
+    - POST https://api.airdna.co/api/enterprise/v2/listings/details
+    - POST https://api.airdna.co/api/enterprise/v2/listing/{listingId}/metrics/historical
+    - POST https://api.airdna.co/api/enterprise/v2/listing/{listingId}/comps
+    - POST https://api.airdna.co/api/enterprise/v2/listing/{listingId}/pricing/future
+    - POST https://api.airdna.co/api/enterprise/v2/rentalizer/individual
+    - POST https://api.airdna.co/api/enterprise/v2/rentalizer/bulk
+    - POST https://api.airdna.co/api/enterprise/v2/rentalizer-lead-gen/summary
+    - GET  https://api.airdna.co/api/enterprise/v2/smart-rates/{listingId}
+    - POST https://api.airdna.co/api/enterprise/v2/smart-rates/{listingId}
+sources:
+  - url: https://docs.airdna.co/
+    type: Documentation
+    note: Enterprise API docs list base URL https://api.airdna.co/api/enterprise/v2 and Bearer auth; all endpoints are HTTPS REST.
+  - url: https://airdna.redoc.ly/
+    type: APIReference
+    note: Redoc reference confirms v2.0.0 REST endpoints and the payload/status response envelope; no WebSocket mentioned.
+  - url: https://www.airdna.co/vacation-rental-data-api
+    type: Website
+    note: Vacation rental data API product page; sales-led enterprise access, no streaming transport described.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists in AirDNA's documentation, so
+    no AsyncAPI document was created. The catalog models only the documented
+    synchronous REST interface via openapi/airdna-openapi.yml.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

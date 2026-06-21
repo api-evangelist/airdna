@@ -1,0 +1,133 @@
+aid: airdna
+url: https://raw.githubusercontent.com/api-evangelist/airdna/refs/heads/main/apis.yml
+name: AirDNA
+kind: company
+description: AirDNA provides short-term rental market data and analytics for Airbnb
+  and Vrbo, tracking over 10 million listings across 120,000+ markets. The AirDNA
+  Enterprise API exposes market metrics, STR listing data, comparable property sets,
+  Rentalizer revenue estimates, and Smart Rates pricing through a Bearer-authenticated
+  REST interface.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Short-Term Rental
+- Vacation Rental
+- Market Data
+- Real Estate
+- Analytics
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: airdna:market-search
+  name: AirDNA Market Search
+  tags:
+  - Market Search
+  - Markets
+  - Submarkets
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.airdna.co/
+  baseURL: https://api.airdna.co/api/enterprise/v2
+  properties:
+  - url: https://docs.airdna.co/
+    type: Documentation
+  - url: https://airdna.redoc.ly/
+    type: APIReference
+  - url: openapi/airdna-openapi.yml
+    type: OpenAPI
+  description: Search for markets and submarkets by search term or coordinates, explore
+    markets within a country, and resolve whether AirDNA has a location mapped and
+    under what market type.
+- aid: airdna:market-stats
+  name: AirDNA Market Stats
+  tags:
+  - Market Metrics
+  - Occupancy
+  - Revenue
+  - ADR
+  - RevPAR
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.airdna.co/
+  baseURL: https://api.airdna.co/api/enterprise/v2
+  properties:
+  - url: https://docs.airdna.co/
+    type: Documentation
+  - url: https://airdna.redoc.ly/
+    type: APIReference
+  - url: openapi/airdna-openapi.yml
+    type: OpenAPI
+  description: Time-series market and submarket metrics including occupancy, revenue,
+    average daily rate (ADR), RevPAR, booking lead time, length of stay, active listings,
+    and future daily pricing across 12-60 month windows.
+- aid: airdna:property-listing-data
+  name: AirDNA Property/Listing Data
+  tags:
+  - Listings
+  - STR Data
+  - Properties
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.airdna.co/
+  baseURL: https://api.airdna.co/api/enterprise/v2
+  properties:
+  - url: https://docs.airdna.co/
+    type: Documentation
+  - url: https://airdna.redoc.ly/
+    type: APIReference
+  - url: openapi/airdna-openapi.yml
+    type: OpenAPI
+  description: Search and explore individual short-term rental listings by term, coordinates,
+    country, market, submarket, or radius; fetch listing details and historical performance
+    metrics for one or many listings.
+- aid: airdna:rentalizer-estimates
+  name: AirDNA Rentalizer Estimates
+  tags:
+  - Rentalizer
+  - Revenue Estimates
+  - Valuations
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.airdna.co/
+  baseURL: https://api.airdna.co/api/enterprise/v2
+  properties:
+  - url: https://docs.airdna.co/
+    type: Documentation
+  - url: https://airdna.redoc.ly/
+    type: APIReference
+  - url: openapi/airdna-openapi.yml
+    type: OpenAPI
+  description: Rentalizer revenue estimates that project how an address could perform
+    as a short-term rental over the next twelve months, with detailed single-address,
+    bulk multi-address, and summarized lead-gen estimate endpoints.
+- aid: airdna:comps
+  name: AirDNA Comps
+  tags:
+  - Comps
+  - Comparable Listings
+  - Comp Set
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.airdna.co/
+  baseURL: https://api.airdna.co/api/enterprise/v2
+  properties:
+  - url: https://docs.airdna.co/
+    type: Documentation
+  - url: https://airdna.redoc.ly/
+    type: APIReference
+  - url: openapi/airdna-openapi.yml
+    type: OpenAPI
+  description: Fetch the most comparable rental properties for a given listing, returning
+    listing details for a competitive comp set used to benchmark short-term rental
+    performance.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/airdna
+- type: Website
+  url: https://www.airdna.co
+- type: Documentation
+  url: https://docs.airdna.co/
+- type: Plans
+  url: plans/airdna-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/airdna-rate-limits.yml
+- type: FinOps
+  url: finops/airdna-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,442 @@
+{
+  "item": [
+    {
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Market Data",
+      "description": {
+        "content": "Market and submarket discovery, metrics, and future pricing.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1b2c3d4-0001-4000-8000-000000000101",
+          "name": "Search for markets or submarkets.",
+          "request": {
+            "name": "Search for markets or submarkets.",
+            "description": {
+              "content": "Search for markets and submarkets by search term or coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "market", "search"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"search_term\": \"Nashville\",\n  \"pagination\": { \"page_size\": 10, \"offset\": 0 }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0001-4000-8000-000000000102",
+          "name": "Fetch market details.",
+          "request": {
+            "name": "Fetch market details.",
+            "description": {
+              "content": "Fetch details for a specific market by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "market", ":marketId"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "marketId", "value": "" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0001-4000-8000-000000000103",
+          "name": "Market occupancy metrics.",
+          "request": {
+            "name": "Market occupancy metrics.",
+            "description": {
+              "content": "Occupancy metrics for a market over a 12-60 month window.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "market", ":marketId", "metrics", "occupancy"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "marketId", "value": "" }]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"num_months\": 12,\n  \"currency\": \"USD\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0001-4000-8000-000000000104",
+          "name": "Market revenue metrics.",
+          "request": {
+            "name": "Market revenue metrics.",
+            "description": {
+              "content": "Average revenue metrics for a market.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "market", ":marketId", "metrics", "revenue"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "marketId", "value": "" }]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"num_months\": 12,\n  \"currency\": \"USD\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0001-4000-8000-000000000105",
+          "name": "Market future pricing.",
+          "request": {
+            "name": "Market future pricing.",
+            "description": {
+              "content": "Future daily pricing data for a market.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "market", ":marketId", "pricing", "future"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "marketId", "value": "" }]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "STR Listing Data",
+      "description": {
+        "content": "Short-term rental listing search, details, history, and comps.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1b2c3d4-0002-4000-8000-000000000201",
+          "name": "Search listings.",
+          "request": {
+            "name": "Search listings.",
+            "description": {
+              "content": "Search short-term rental listings by term or coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "listing", "search"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"search_term\": \"Austin, TX\",\n  \"pagination\": { \"page_size\": 25, \"offset\": 0 }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0002-4000-8000-000000000202",
+          "name": "Fetch listing details.",
+          "request": {
+            "name": "Fetch listing details.",
+            "description": {
+              "content": "Fetch details for a specific listing by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "listing", ":listingId"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "listingId", "value": "" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0002-4000-8000-000000000203",
+          "name": "Historical listing metrics.",
+          "request": {
+            "name": "Historical listing metrics.",
+            "description": {
+              "content": "Historical performance metrics for a listing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "listing", ":listingId", "metrics", "historical"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "listingId", "value": "" }]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"num_months\": 12\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0002-4000-8000-000000000204",
+          "name": "Fetch comparable listings (comp set).",
+          "request": {
+            "name": "Fetch comparable listings (comp set).",
+            "description": {
+              "content": "Fetch the most comparable rental properties for a listing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "listing", ":listingId", "comps"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "listingId", "value": "" }]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Rentalizer",
+      "description": {
+        "content": "Revenue estimates for individual, bulk, and lead-gen use cases.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1b2c3d4-0003-4000-8000-000000000301",
+          "name": "Detailed Rentalizer estimate (single address).",
+          "request": {
+            "name": "Detailed Rentalizer estimate (single address).",
+            "description": {
+              "content": "Detailed performance estimate for a single address over the next twelve months.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "rentalizer", "individual"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"123 Main St, Nashville, TN\",\n  \"bedrooms\": 3,\n  \"bathrooms\": 2,\n  \"accommodates\": 6\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0003-4000-8000-000000000302",
+          "name": "Bulk Rentalizer estimates.",
+          "request": {
+            "name": "Bulk Rentalizer estimates.",
+            "description": {
+              "content": "Summarized estimates for multiple addresses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "rentalizer", "bulk"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addresses\": [\n    { \"address\": \"123 Main St, Nashville, TN\", \"bedrooms\": 3 }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0003-4000-8000-000000000303",
+          "name": "Rentalizer lead-gen summary.",
+          "request": {
+            "name": "Rentalizer lead-gen summary.",
+            "description": {
+              "content": "Summarized performance estimate for lead generation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "rentalizer-lead-gen", "summary"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"123 Main St, Nashville, TN\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "Smart Rates",
+      "description": {
+        "content": "Pricing strategy base rates and smart rates for listings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1b2c3d4-0004-4000-8000-000000000401",
+          "name": "Fetch pricing strategy base rates.",
+          "request": {
+            "name": "Fetch pricing strategy base rates.",
+            "description": {
+              "content": "Fetch pricing strategy base rates for a listing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "smart-rates", ":listingId"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "listingId", "value": "" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "a1b2c3d4-0004-4000-8000-000000000402",
+          "name": "Fetch smart rates for a listing.",
+          "request": {
+            "name": "Fetch smart rates for a listing.",
+            "description": {
+              "content": "Fetch smart rates for a listing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "enterprise", "v2", "smart-rates", ":listingId"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "listingId", "value": "" }]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.airdna.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1b2c3d4-0000-4000-8000-000000000000",
+    "name": "AirDNA Enterprise API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo across Market Data, Property Valuations & Comps, Rentalizer Lead Gen, and Smart Rates Data. Authenticated with a Bearer token.\n\nContact Support:\n Name: AirDNA API Support\n Email: api@airdna.co",
+      "type": "text/plain"
+    }
+  }
+}

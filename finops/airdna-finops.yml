@@ -1,0 +1,96 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: AirDNA
+providerId: airdna
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Short-Term Rental
+- Vacation Rental
+- Market Data
+- Real Estate
+- Analytics
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of AirDNA Enterprise API spend. AirDNA bills API access through
+  negotiated enterprise agreements covering four data packages (Market Data,
+  Property Valuations & Comps, Rentalizer Lead Gen, Smart Rates Data) rather
+  than a public usage-based rate card. Because pricing is sales-led and not
+  publicly documented, the meters below are modeled as likely cost dimensions
+  and are not reconciled against an actual AirDNA invoice.
+notes: >-
+  Replace the modeled meters and billing model with the real contract terms
+  during reconciliation; AirDNA does not publish per-call API pricing.
+sources:
+- https://www.airdna.co/vacation-rental-data-api
+- https://docs.airdna.co/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: AirDNA
+serviceCategory: Data and Analytics
+billingModel:
+  pricingCategory: Commitment-Based
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+focusColumns:
+  ServiceName: AirDNA Enterprise API
+  ServiceCategory: Data and Analytics
+  ProviderName: AirDNA
+  PublisherName: AirDNA
+  InvoiceIssuerName: AirDNA
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Commitment-Based
+meters:
+- name: market_data_requests
+  description: Requests to Market Data endpoints (search, metrics, future pricing). Modeled; confirm contract metering.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - package
+- name: listing_data_requests
+  description: Requests to STR listing data endpoints (search, details, history, comps).
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - package
+- name: rentalizer_estimates
+  description: Rentalizer individual, bulk, and lead-gen summary estimates produced.
+  unit: estimates
+  aggregation: sum
+  dimensions:
+  - account
+  - package
+- name: smart_rates_requests
+  description: Smart Rates base-rate and smart-rate lookups.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - package
+principles:
+- name: Visibility
+  description: Track API call volume by package and endpoint against the contracted entitlement.
+- name: Allocation
+  description: Tag API keys per team/workload and map usage to internal cost centers and use cases.
+- name: Optimization
+  description: Use bulk/summary endpoints (e.g., rentalizer/bulk) over per-address calls where possible; cache stable market metrics.
+- name: Accountability
+  description: Assign an owner for the AirDNA contract; review usage against entitlement before renewal.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

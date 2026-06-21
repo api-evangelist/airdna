@@ -1,0 +1,261 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AirDNA Enterprise API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for markets or submarkets by term or coordinates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/search",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"search_term\": \"Nashville\",\n  \"pagination\": { \"page_size\": 10, \"offset\": 0 }\n}"
+            }
+          },
+          "docs": "Search for markets and submarkets by search term or coordinates."
+        },
+        {
+          "info": {
+            "name": "Fetch details for a specific market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/{marketId}"
+          },
+          "docs": "Fetch details for a specific market by id."
+        },
+        {
+          "info": {
+            "name": "Market occupancy metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/occupancy",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"num_months\": 12,\n  \"currency\": \"USD\"\n}"
+            }
+          },
+          "docs": "Occupancy metrics for a market over a 12-60 month window."
+        },
+        {
+          "info": {
+            "name": "Market revenue metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/revenue",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"num_months\": 12,\n  \"currency\": \"USD\"\n}"
+            }
+          },
+          "docs": "Average revenue metrics for a market."
+        },
+        {
+          "info": {
+            "name": "Market ADR metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/{marketId}/metrics/adr",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"num_months\": 12,\n  \"currency\": \"USD\"\n}"
+            }
+          },
+          "docs": "Average daily rate (ADR) metrics for a market."
+        },
+        {
+          "info": {
+            "name": "Market future pricing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/{marketId}/pricing/future",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Future daily pricing data for a market."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "STR Listing Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search listings by term or coordinates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/listing/search",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"search_term\": \"Austin, TX\",\n  \"pagination\": { \"page_size\": 25, \"offset\": 0 }\n}"
+            }
+          },
+          "docs": "Search short-term rental listings by term or coordinates."
+        },
+        {
+          "info": {
+            "name": "Fetch details for a specific listing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airdna.co/api/enterprise/v2/listing/{listingId}"
+          },
+          "docs": "Fetch details for a specific listing by id."
+        },
+        {
+          "info": {
+            "name": "Historical listing metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/listing/{listingId}/metrics/historical",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"num_months\": 12\n}"
+            }
+          },
+          "docs": "Historical performance metrics for a listing."
+        },
+        {
+          "info": {
+            "name": "Fetch comparable listings (comp set).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/listing/{listingId}/comps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch the most comparable rental properties for a listing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rentalizer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detailed Rentalizer estimate for a single address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/rentalizer/individual",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"address\": \"123 Main St, Nashville, TN\",\n  \"bedrooms\": 3,\n  \"bathrooms\": 2,\n  \"accommodates\": 6\n}"
+            }
+          },
+          "docs": "Detailed performance estimate for a single address over the next twelve months."
+        },
+        {
+          "info": {
+            "name": "Bulk Rentalizer estimates for multiple addresses.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/rentalizer/bulk",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"addresses\": [\n    { \"address\": \"123 Main St, Nashville, TN\", \"bedrooms\": 3 }\n  ]\n}"
+            }
+          },
+          "docs": "Summarized estimates for multiple addresses."
+        },
+        {
+          "info": {
+            "name": "Rentalizer lead-gen summary.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/rentalizer-lead-gen/summary",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"address\": \"123 Main St, Nashville, TN\"\n}"
+            }
+          },
+          "docs": "Summarized performance estimate for lead generation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Smart Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch pricing strategy base rates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airdna.co/api/enterprise/v2/smart-rates/{listingId}"
+          },
+          "docs": "Fetch pricing strategy base rates for a listing."
+        },
+        {
+          "info": {
+            "name": "Fetch smart rates for a listing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/smart-rates/{listingId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch smart rates for a listing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,51 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: AirDNA
+providerId: airdna
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Short-Term Rental
+- Vacation Rental
+- Market Data
+- Real Estate
+- Analytics
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The AirDNA Enterprise API is provisioned per enterprise agreement, with
+  request volumes, package entitlements, and any throttling governed by the
+  contract rather than a published public rate-limit table. AirDNA's public
+  documentation does not enumerate specific RPM/RPD/quota values for the API.
+  Specific limits are not reconciled in this artifact.
+notes: >-
+  Confirm per-account request limits, daily/monthly quotas, concurrency, and
+  throttling/Retry-After behavior directly with AirDNA during onboarding;
+  values are determined by the negotiated enterprise plan.
+sources:
+- https://docs.airdna.co/
+- https://www.airdna.co/vacation-rental-data-api
+responseCodes:
+  throttled: 429
+limits:
+- name: Account Request Volume
+  scope: account
+  metric: requests
+  limit: see provider agreement
+  notes: Request volume entitlements are set per enterprise contract; not publicly documented.
+- name: Package Entitlements
+  scope: account
+  metric: packages
+  limit: see provider agreement
+  notes: Access to Market Data, Valuations & Comps, Rentalizer Lead Gen, and Smart Rates is provisioned per plan.
+policies:
+- name: Contract-Governed Limits
+  description: Usage entitlements and limits are defined by the negotiated enterprise agreement rather than a public tier table.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,59 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: AirDNA
+providerId: airdna
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Short-Term Rental
+- Vacation Rental
+- Market Data
+- Real Estate
+- Analytics
+- Plans
+description: >-
+  AirDNA Enterprise API access is sales-led with no self-serve sign-up and no
+  published public price list. Access is organized around four data packages -
+  Market Data, Property Valuations & Comps, Rentalizer Lead Gen, and Smart Rates
+  Data - provisioned per enterprise agreement. API keys are obtained by
+  contacting AirDNA sales (api@airdna.co). Specific per-package and per-call
+  pricing is not publicly documented and is not reconciled in this artifact.
+notes: >-
+  AirDNA sells subscription products (MarketMinder, etc.) with public pricing,
+  but Enterprise API pricing is negotiated through sales. Independent industry
+  sources estimate enterprise API contracts in the tens of thousands of dollars
+  per year; treat such figures as unverified until reconciliation against an
+  AirDNA quote.
+sources:
+- https://www.airdna.co/vacation-rental-data-api
+- https://docs.airdna.co/
+- https://www.airdna.co/pricing
+plans:
+- id: airdna-enterprise-api
+  name: Enterprise API
+  type: enterprise
+  description: >-
+    Bearer-authenticated access to the AirDNA Enterprise API across the four
+    data packages, provisioned per negotiated enterprise agreement. Contact
+    AirDNA sales for terms and pricing.
+  entries:
+  - label: Enterprise API Agreement
+    name: enterprise_api
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Market Data
+  - name: Property Valuations & Comps
+  - name: Rentalizer Lead Gen
+  - name: Smart Rates Data
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
