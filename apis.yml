@@ -116,6 +116,10 @@ apis:
     listing details for a competitive comp set used to benchmark short-term rental
     performance.
 common:
+- type: DomainSecurity
+  url: security/airdna-domain-security.yml
+- type: Authentication
+  url: authentication/airdna-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/airdna
 - type: Website
