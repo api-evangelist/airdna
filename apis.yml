@@ -116,6 +116,8 @@ apis:
     listing details for a competitive comp set used to benchmark short-term rental
     performance.
 common:
+- type: AgenticAccess
+  url: agentic-access/airdna-agentic-access.yml
 - type: DomainSecurity
   url: security/airdna-domain-security.yml
 - type: Authentication
