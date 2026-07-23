@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: AirDNA Enterprise Market Data Smart Rates API
+  description: The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.
+  termsOfService: https://www.airdna.co/terms-of-service
+  contact:
+    name: AirDNA API Support
+    email: api@airdna.co
+  version: 2.0.0
+servers:
+- url: https://api.airdna.co/api/enterprise/v2
+security:
+- bearerAuth: []
+tags:
+- name: Smart Rates
+  description: Pricing strategy base rates and smart rates for listings.
+paths:
+  /smart-rates/{listingId}:
+    get:
+      operationId: getSmartRatesBase
+      tags:
+      - Smart Rates
+      summary: Fetch pricing strategy base rates for a listing.
+      parameters:
+      - $ref: '#/components/parameters/ListingId'
+      responses:
+        '200':
+          description: Base rates for the listing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: getSmartRates
+      tags:
+      - Smart Rates
+      summary: Fetch smart rates for a listing.
+      parameters:
+      - $ref: '#/components/parameters/ListingId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExploreRequest'
+      responses:
+        '200':
+          description: Smart rates for the listing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    ListingId:
+      name: listingId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the listing.
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseEnvelope'
+  schemas:
+    Status:
+      type: object
+      properties:
+        type:
+          type: string
+          description: success or error.
+        response_id:
+          type: string
+        message:
+          type: string
+    ExploreRequest:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+        sort_order:
+          type: string
+        bounding_box:
+          type: object
+          description: Geographic bounding box for spatial filtering.
+    Filter:
+      type: object
+      description: Filter object applied to explore/metrics queries.
+      properties:
+        field:
+          type: string
+          description: Attribute name to filter on.
+        type:
+          type: string
+          enum:
+          - select
+          - multi_select
+          - gt
+          - gte
+          - lt
+          - lte
+          - range
+          - jsonb_boolean
+          - jsonb_array
+        value:
+          description: Filter value (string, number, boolean, or array).
+    Pagination:
+      type: object
+      properties:
+        page_size:
+          type: integer
+        offset:
+          type: integer
+    ResponseEnvelope:
+      type: object
+      properties:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token supplied in the Authorization header (Authorization: Bearer {API_KEY}). API keys are obtained from AirDNA sales at api@airdna.co.'

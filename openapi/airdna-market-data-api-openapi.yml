@@ -1,0 +1,462 @@
+openapi: 3.0.1
+info:
+  title: AirDNA Enterprise Market Data API
+  description: The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.
+  termsOfService: https://www.airdna.co/terms-of-service
+  contact:
+    name: AirDNA API Support
+    email: api@airdna.co
+  version: 2.0.0
+servers:
+- url: https://api.airdna.co/api/enterprise/v2
+security:
+- bearerAuth: []
+tags:
+- name: Market Data
+  description: Market and submarket discovery, metrics, and future pricing.
+paths:
+  /market/search:
+    post:
+      operationId: searchMarkets
+      tags:
+      - Market Data
+      summary: Search for markets or submarkets by term or coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarketSearchRequest'
+      responses:
+        '200':
+          description: Matching markets and submarkets.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketSearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}:
+    get:
+      operationId: getMarket
+      tags:
+      - Market Data
+      summary: Fetch details for a specific market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      responses:
+        '200':
+          description: Market details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /country/{countryCode}/markets:
+    post:
+      operationId: exploreCountryMarkets
+      tags:
+      - Market Data
+      summary: Explore markets within a country.
+      parameters:
+      - $ref: '#/components/parameters/CountryCode'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExploreRequest'
+      responses:
+        '200':
+          description: Markets within the country.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}/metrics/occupancy:
+    post:
+      operationId: getMarketOccupancy
+      tags:
+      - Market Data
+      summary: Occupancy metrics for a market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricsRequest'
+      responses:
+        '200':
+          description: Occupancy metrics time series.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}/metrics/revenue:
+    post:
+      operationId: getMarketRevenue
+      tags:
+      - Market Data
+      summary: Average revenue metrics for a market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricsRequest'
+      responses:
+        '200':
+          description: Revenue metrics time series.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}/metrics/adr:
+    post:
+      operationId: getMarketAdr
+      tags:
+      - Market Data
+      summary: Average daily rate (ADR) metrics for a market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricsRequest'
+      responses:
+        '200':
+          description: ADR metrics time series.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}/metrics/revpar:
+    post:
+      operationId: getMarketRevpar
+      tags:
+      - Market Data
+      summary: RevPAR metrics for a market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricsRequest'
+      responses:
+        '200':
+          description: RevPAR metrics time series.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}/metrics/booking-lead-time:
+    post:
+      operationId: getMarketBookingLeadTime
+      tags:
+      - Market Data
+      summary: Booking lead time metrics for a market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricsRequest'
+      responses:
+        '200':
+          description: Booking lead time metrics time series.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}/metrics/length-of-stay:
+    post:
+      operationId: getMarketLengthOfStay
+      tags:
+      - Market Data
+      summary: Average length of stay metrics for a market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricsRequest'
+      responses:
+        '200':
+          description: Length of stay metrics time series.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}/metrics/active-listings:
+    post:
+      operationId: getMarketActiveListings
+      tags:
+      - Market Data
+      summary: Active listings count for a market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricsRequest'
+      responses:
+        '200':
+          description: Active listings metrics time series.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}/pricing/future:
+    post:
+      operationId: getMarketFuturePricing
+      tags:
+      - Market Data
+      summary: Future daily pricing data for a market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExploreRequest'
+      responses:
+        '200':
+          description: Future daily pricing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /submarket/{submarketId}:
+    get:
+      operationId: getSubmarket
+      tags:
+      - Market Data
+      summary: Fetch details for a specific submarket.
+      parameters:
+      - $ref: '#/components/parameters/SubmarketId'
+      responses:
+        '200':
+          description: Submarket details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /market/{marketId}/submarkets:
+    post:
+      operationId: exploreMarketSubmarkets
+      tags:
+      - Market Data
+      summary: Explore submarkets within a market.
+      parameters:
+      - $ref: '#/components/parameters/MarketId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExploreRequest'
+      responses:
+        '200':
+          description: Submarkets within the market.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    MetricsRequest:
+      type: object
+      properties:
+        num_months:
+          type: integer
+          minimum: 12
+          maximum: 60
+          description: Number of months of metrics to return (12-60).
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+    MarketSearchRequest:
+      type: object
+      properties:
+        search_term:
+          type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    MarketSearchResult:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          description: Market type (neighborhood, city, etc.).
+        listing_count:
+          type: integer
+        location_name:
+          type: string
+        location:
+          type: object
+        legacy_location:
+          type: object
+    PageInfo:
+      type: object
+      properties:
+        page_size:
+          type: integer
+        offset:
+          type: integer
+    Status:
+      type: object
+      properties:
+        type:
+          type: string
+          description: success or error.
+        response_id:
+          type: string
+        message:
+          type: string
+    Filter:
+      type: object
+      description: Filter object applied to explore/metrics queries.
+      properties:
+        field:
+          type: string
+          description: Attribute name to filter on.
+        type:
+          type: string
+          enum:
+          - select
+          - multi_select
+          - gt
+          - gte
+          - lt
+          - lte
+          - range
+          - jsonb_boolean
+          - jsonb_array
+        value:
+          description: Filter value (string, number, boolean, or array).
+    ExploreRequest:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+        sort_order:
+          type: string
+        bounding_box:
+          type: object
+          description: Geographic bounding box for spatial filtering.
+    MarketSearchResponse:
+      type: object
+      properties:
+        payload:
+          type: object
+          properties:
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/MarketSearchResult'
+        status:
+          $ref: '#/components/schemas/Status'
+    Pagination:
+      type: object
+      properties:
+        page_size:
+          type: integer
+        offset:
+          type: integer
+    ResponseEnvelope:
+      type: object
+      properties:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
+  parameters:
+    MarketId:
+      name: marketId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the market.
+    CountryCode:
+      name: countryCode
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ISO country code.
+    SubmarketId:
+      name: submarketId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the submarket.
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseEnvelope'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token supplied in the Authorization header (Authorization: Bearer {API_KEY}). API keys are obtained from AirDNA sales at api@airdna.co.'

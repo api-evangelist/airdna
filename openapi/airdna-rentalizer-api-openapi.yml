@@ -1,0 +1,121 @@
+openapi: 3.0.1
+info:
+  title: AirDNA Enterprise Market Data Rentalizer API
+  description: The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.
+  termsOfService: https://www.airdna.co/terms-of-service
+  contact:
+    name: AirDNA API Support
+    email: api@airdna.co
+  version: 2.0.0
+servers:
+- url: https://api.airdna.co/api/enterprise/v2
+security:
+- bearerAuth: []
+tags:
+- name: Rentalizer
+  description: Revenue estimates for individual and bulk addresses.
+paths:
+  /rentalizer/individual:
+    post:
+      operationId: rentalizerIndividual
+      tags:
+      - Rentalizer
+      summary: Detailed Rentalizer performance estimate for a single address.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RentalizerRequest'
+      responses:
+        '200':
+          description: Rentalizer estimate for the address.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /rentalizer/bulk:
+    post:
+      operationId: rentalizerBulk
+      tags:
+      - Rentalizer
+      summary: Summarized Rentalizer estimates for multiple addresses.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addresses:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Address'
+      responses:
+        '200':
+          description: Summarized Rentalizer estimates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        address:
+          type: string
+        bedrooms:
+          type: integer
+        bathrooms:
+          type: number
+        accommodates:
+          type: integer
+    RentalizerRequest:
+      type: object
+      properties:
+        address:
+          type: string
+        bedrooms:
+          type: integer
+        bathrooms:
+          type: number
+        accommodates:
+          type: integer
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+    Status:
+      type: object
+      properties:
+        type:
+          type: string
+          description: success or error.
+        response_id:
+          type: string
+        message:
+          type: string
+    ResponseEnvelope:
+      type: object
+      properties:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseEnvelope'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token supplied in the Authorization header (Authorization: Bearer {API_KEY}). API keys are obtained from AirDNA sales at api@airdna.co.'

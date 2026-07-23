@@ -1,0 +1,84 @@
+openapi: 3.0.1
+info:
+  title: AirDNA Enterprise Market Data Rentalizer Lead Gen API
+  description: The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.
+  termsOfService: https://www.airdna.co/terms-of-service
+  contact:
+    name: AirDNA API Support
+    email: api@airdna.co
+  version: 2.0.0
+servers:
+- url: https://api.airdna.co/api/enterprise/v2
+security:
+- bearerAuth: []
+tags:
+- name: Rentalizer Lead Gen
+  description: Summarized performance estimates for lead generation.
+paths:
+  /rentalizer-lead-gen/summary:
+    post:
+      operationId: rentalizerLeadGenSummary
+      tags:
+      - Rentalizer Lead Gen
+      summary: Summarized performance estimate for lead generation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RentalizerRequest'
+      responses:
+        '200':
+          description: Summarized lead-gen performance estimate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseEnvelope'
+  schemas:
+    Status:
+      type: object
+      properties:
+        type:
+          type: string
+          description: success or error.
+        response_id:
+          type: string
+        message:
+          type: string
+    RentalizerRequest:
+      type: object
+      properties:
+        address:
+          type: string
+        bedrooms:
+          type: integer
+        bathrooms:
+          type: number
+        accommodates:
+          type: integer
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+    ResponseEnvelope:
+      type: object
+      properties:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Bearer token supplied in the Authorization header (Authorization: Bearer {API_KEY}). API keys are obtained from AirDNA sales at api@airdna.co.'
