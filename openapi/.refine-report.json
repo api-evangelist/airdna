@@ -1,0 +1,22 @@
+{
+  "provider": "airdna",
+  "sources": [
+    "airdna-market-data-api-openapi.yml",
+    "airdna-rentalizer-api-openapi.yml",
+    "airdna-rentalizer-lead-gen-api-openapi.yml",
+    "airdna-smart-rates-api-openapi.yml",
+    "airdna-str-listing-data-api-openapi.yml"
+  ],
+  "outputs": [
+    "airdna-market-data-api-openapi.yml",
+    "airdna-rentalizer-api-openapi.yml",
+    "airdna-rentalizer-lead-gen-api-openapi.yml",
+    "airdna-smart-rates-api-openapi.yml",
+    "airdna-str-listing-data-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
