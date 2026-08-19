@@ -1,0 +1,307 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AirDNA Enterprise Market Data API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for markets or submarkets by term or coordinates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for markets or submarkets by term or coordinates."
+        },
+        {
+          "info": {
+            "name": "Fetch details for a specific market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ]
+          },
+          "docs": "Fetch details for a specific market."
+        },
+        {
+          "info": {
+            "name": "Explore markets within a country.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/country/:countryCode/markets",
+            "params": [
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "path",
+                "description": "ISO country code."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Explore markets within a country."
+        },
+        {
+          "info": {
+            "name": "Occupancy metrics for a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/metrics/occupancy",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Occupancy metrics for a market."
+        },
+        {
+          "info": {
+            "name": "Average revenue metrics for a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/metrics/revenue",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Average revenue metrics for a market."
+        },
+        {
+          "info": {
+            "name": "Average daily rate (ADR) metrics for a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/metrics/adr",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Average daily rate (ADR) metrics for a market."
+        },
+        {
+          "info": {
+            "name": "RevPAR metrics for a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/metrics/revpar",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "RevPAR metrics for a market."
+        },
+        {
+          "info": {
+            "name": "Booking lead time metrics for a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/metrics/booking-lead-time",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Booking lead time metrics for a market."
+        },
+        {
+          "info": {
+            "name": "Average length of stay metrics for a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/metrics/length-of-stay",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Average length of stay metrics for a market."
+        },
+        {
+          "info": {
+            "name": "Active listings count for a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/metrics/active-listings",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Active listings count for a market."
+        },
+        {
+          "info": {
+            "name": "Future daily pricing data for a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/pricing/future",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Future daily pricing data for a market."
+        },
+        {
+          "info": {
+            "name": "Fetch details for a specific submarket.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airdna.co/api/enterprise/v2/submarket/:submarketId",
+            "params": [
+              {
+                "name": "submarketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the submarket."
+              }
+            ]
+          },
+          "docs": "Fetch details for a specific submarket."
+        },
+        {
+          "info": {
+            "name": "Explore submarkets within a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/submarkets",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Explore submarkets within a market."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

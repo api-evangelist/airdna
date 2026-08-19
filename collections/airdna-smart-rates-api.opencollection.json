@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AirDNA Enterprise Market Data Smart Rates API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Smart Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch pricing strategy base rates for a listing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airdna.co/api/enterprise/v2/smart-rates/:listingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the listing."
+              }
+            ]
+          },
+          "docs": "Fetch pricing strategy base rates for a listing."
+        },
+        {
+          "info": {
+            "name": "Fetch smart rates for a listing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/smart-rates/:listingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch smart rates for a listing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AirDNA Enterprise Market Data Rentalizer Lead Gen API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rentalizer Lead Gen",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Summarized performance estimate for lead generation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/rentalizer-lead-gen/summary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Summarized performance estimate for lead generation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

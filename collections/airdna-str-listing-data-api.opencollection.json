@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AirDNA Enterprise Market Data STR Listing Data API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "STR Listing Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search listings by term or coordinates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/listing/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search listings by term or coordinates."
+        },
+        {
+          "info": {
+            "name": "Explore listings within a market.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/market/:marketId/listings",
+            "params": [
+              {
+                "name": "marketId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the market."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Explore listings within a market."
+        },
+        {
+          "info": {
+            "name": "Explore listings within a radius of coordinates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/listings/radius",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Explore listings within a radius of coordinates."
+        },
+        {
+          "info": {
+            "name": "Fetch details for a specific listing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airdna.co/api/enterprise/v2/listing/:listingId",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the listing."
+              }
+            ]
+          },
+          "docs": "Fetch details for a specific listing."
+        },
+        {
+          "info": {
+            "name": "Fetch details for multiple listings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/listings/details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch details for multiple listings."
+        },
+        {
+          "info": {
+            "name": "Historical performance metrics for a listing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/listing/:listingId/metrics/historical",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Historical performance metrics for a listing."
+        },
+        {
+          "info": {
+            "name": "Fetch comparable listings (comp set) for a listing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/listing/:listingId/comps",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch comparable listings (comp set) for a listing."
+        },
+        {
+          "info": {
+            "name": "Future pricing for a listing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/listing/:listingId/pricing/future",
+            "params": [
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Future pricing for a listing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

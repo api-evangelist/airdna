@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AirDNA Enterprise Market Data Rentalizer API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rentalizer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detailed Rentalizer performance estimate for a single address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/rentalizer/individual",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Detailed Rentalizer performance estimate for a single address."
+        },
+        {
+          "info": {
+            "name": "Summarized Rentalizer estimates for multiple addresses.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airdna.co/api/enterprise/v2/rentalizer/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Summarized Rentalizer estimates for multiple addresses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

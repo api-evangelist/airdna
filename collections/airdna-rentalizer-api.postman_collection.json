@@ -1,0 +1,341 @@
+{
+  "item": [
+    {
+      "id": "14b14419-6b7a-43b9-ac6c-be87ffa1b346",
+      "name": "Rentalizer",
+      "description": {
+        "content": "Revenue estimates for individual and bulk addresses.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5e27e2f9-7778-4e37-a421-f392c1acf0e4",
+          "name": "Detailed Rentalizer performance estimate for a single address.",
+          "request": {
+            "name": "Detailed Rentalizer performance estimate for a single address.",
+            "description": {},
+            "url": {
+              "path": [
+                "rentalizer",
+                "individual"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"accommodates\": \"<integer>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6f9f077-e74d-4019-a06a-a2d0b4fc0704",
+              "name": "Rentalizer estimate for the address.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rentalizer",
+                    "individual"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"accommodates\": \"<integer>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {},\n  \"status\": {\n    \"type\": \"string\",\n    \"response_id\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97825038-2f48-43ae-af52-256ae42ab2c5",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rentalizer",
+                    "individual"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"accommodates\": \"<integer>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {},\n  \"status\": {\n    \"type\": \"string\",\n    \"response_id\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ed5ddb9-b004-4025-bcbf-1b523e21dafc",
+          "name": "Summarized Rentalizer estimates for multiple addresses.",
+          "request": {
+            "name": "Summarized Rentalizer estimates for multiple addresses.",
+            "description": {},
+            "url": {
+              "path": [
+                "rentalizer",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addresses\": [\n    {\n      \"address\": \"<string>\",\n      \"bedrooms\": \"<integer>\",\n      \"bathrooms\": \"<number>\",\n      \"accommodates\": \"<integer>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"bedrooms\": \"<integer>\",\n      \"bathrooms\": \"<number>\",\n      \"accommodates\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "985fff33-bfab-4a07-9422-8eba862d747b",
+              "name": "Summarized Rentalizer estimates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rentalizer",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addresses\": [\n    {\n      \"address\": \"<string>\",\n      \"bedrooms\": \"<integer>\",\n      \"bathrooms\": \"<number>\",\n      \"accommodates\": \"<integer>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"bedrooms\": \"<integer>\",\n      \"bathrooms\": \"<number>\",\n      \"accommodates\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {},\n  \"status\": {\n    \"type\": \"string\",\n    \"response_id\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a7dc340-1549-4d0e-ab4d-ff24025ed63c",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rentalizer",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addresses\": [\n    {\n      \"address\": \"<string>\",\n      \"bedrooms\": \"<integer>\",\n      \"bathrooms\": \"<number>\",\n      \"accommodates\": \"<integer>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"bedrooms\": \"<integer>\",\n      \"bathrooms\": \"<number>\",\n      \"accommodates\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payload\": {},\n  \"status\": {\n    \"type\": \"string\",\n    \"response_id\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.airdna.co/api/enterprise/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5f72657e-7a51-48f3-94a4-aa7ada9f1d79",
+    "name": "AirDNA Enterprise Market Data Rentalizer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.\n\nContact Support:\n Name: AirDNA API Support\n Email: api@airdna.co",
+      "type": "text/plain"
+    }
+  }
+}
