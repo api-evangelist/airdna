@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AirDNA Enterprise Market Data Rentalizer API
+  title: AirDNA Enterprise Rentalizer API
   description: The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.
   termsOfService: https://www.airdna.co/terms-of-service
   contact:
@@ -20,7 +20,7 @@ paths:
       operationId: rentalizerIndividual
       tags:
       - Rentalizer
-      summary: Detailed Rentalizer performance estimate for a single address.
+      summary: Detailed Rentalizer performance estimate for a single address
       requestBody:
         required: true
         content:
@@ -41,7 +41,7 @@ paths:
       operationId: rentalizerBulk
       tags:
       - Rentalizer
-      summary: Summarized Rentalizer estimates for multiple addresses.
+      summary: Summarized Rentalizer estimates for multiple addresses
       requestBody:
         required: true
         content:
@@ -64,17 +64,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        address:
-          type: string
-        bedrooms:
-          type: integer
-        bathrooms:
-          type: number
-        accommodates:
-          type: integer
     RentalizerRequest:
       type: object
       properties:
@@ -89,6 +78,14 @@ components:
         currency:
           type: string
           description: ISO 4217 currency code (default USD).
+    ResponseEnvelope:
+      type: object
+      properties:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
     Status:
       type: object
       properties:
@@ -99,14 +96,17 @@ components:
           type: string
         message:
           type: string
-    ResponseEnvelope:
+    Address:
       type: object
       properties:
-        payload:
-          type: object
-          description: Endpoint-specific data object.
-        status:
-          $ref: '#/components/schemas/Status'
+        address:
+          type: string
+        bedrooms:
+          type: integer
+        bathrooms:
+          type: number
+        accommodates:
+          type: integer
   responses:
     Unauthorized:
       description: Missing or invalid Bearer token.

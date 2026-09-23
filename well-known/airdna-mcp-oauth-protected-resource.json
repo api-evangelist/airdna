@@ -1,0 +1,1 @@
+{"authorization_servers":["https://auth.airdna.co"],"bearer_methods_supported":["header"],"resource":"https://mcp.airdna.co","scopes_supported":["mcp","offline_access"]}

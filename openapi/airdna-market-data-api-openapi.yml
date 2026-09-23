@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: AirDNA Enterprise Market Data API
   description: The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.
@@ -20,7 +20,7 @@ paths:
       operationId: searchMarkets
       tags:
       - Market Data
-      summary: Search for markets or submarkets by term or coordinates.
+      summary: Search for markets or submarkets by term or coordinates
       requestBody:
         required: true
         content:
@@ -41,7 +41,7 @@ paths:
       operationId: getMarket
       tags:
       - Market Data
-      summary: Fetch details for a specific market.
+      summary: Fetch details for a specific market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       responses:
@@ -58,7 +58,7 @@ paths:
       operationId: exploreCountryMarkets
       tags:
       - Market Data
-      summary: Explore markets within a country.
+      summary: Explore markets within a country
       parameters:
       - $ref: '#/components/parameters/CountryCode'
       requestBody:
@@ -81,7 +81,7 @@ paths:
       operationId: getMarketOccupancy
       tags:
       - Market Data
-      summary: Occupancy metrics for a market.
+      summary: Occupancy metrics for a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -104,7 +104,7 @@ paths:
       operationId: getMarketRevenue
       tags:
       - Market Data
-      summary: Average revenue metrics for a market.
+      summary: Average revenue metrics for a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -127,7 +127,7 @@ paths:
       operationId: getMarketAdr
       tags:
       - Market Data
-      summary: Average daily rate (ADR) metrics for a market.
+      summary: Average daily rate (ADR) metrics for a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -150,7 +150,7 @@ paths:
       operationId: getMarketRevpar
       tags:
       - Market Data
-      summary: RevPAR metrics for a market.
+      summary: RevPAR metrics for a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -173,7 +173,7 @@ paths:
       operationId: getMarketBookingLeadTime
       tags:
       - Market Data
-      summary: Booking lead time metrics for a market.
+      summary: Booking lead time metrics for a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -196,7 +196,7 @@ paths:
       operationId: getMarketLengthOfStay
       tags:
       - Market Data
-      summary: Average length of stay metrics for a market.
+      summary: Average length of stay metrics for a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -219,7 +219,7 @@ paths:
       operationId: getMarketActiveListings
       tags:
       - Market Data
-      summary: Active listings count for a market.
+      summary: Active listings count for a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -242,7 +242,7 @@ paths:
       operationId: getMarketFuturePricing
       tags:
       - Market Data
-      summary: Future daily pricing data for a market.
+      summary: Future daily pricing data for a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -265,7 +265,7 @@ paths:
       operationId: getSubmarket
       tags:
       - Market Data
-      summary: Fetch details for a specific submarket.
+      summary: Fetch details for a specific submarket
       parameters:
       - $ref: '#/components/parameters/SubmarketId'
       responses:
@@ -282,7 +282,7 @@ paths:
       operationId: exploreMarketSubmarkets
       tags:
       - Market Data
-      summary: Explore submarkets within a market.
+      summary: Explore submarkets within a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -317,13 +317,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Filter'
-    MarketSearchRequest:
-      type: object
-      properties:
-        search_term:
-          type: string
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     MarketSearchResult:
       type: object
       properties:
@@ -342,23 +335,38 @@ components:
           type: object
         legacy_location:
           type: object
-    PageInfo:
+    ResponseEnvelope:
       type: object
       properties:
-        page_size:
-          type: integer
-        offset:
-          type: integer
-    Status:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
+    MarketSearchRequest:
       type: object
       properties:
-        type:
+        search_term:
           type: string
-          description: success or error.
-        response_id:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ExploreRequest:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        currency:
           type: string
-        message:
+          description: ISO 4217 currency code (default USD).
+        sort_order:
           type: string
+        bounding_box:
+          type: object
+          description: Geographic bounding box for spatial filtering.
     Filter:
       type: object
       description: Filter object applied to explore/metrics queries.
@@ -380,23 +388,30 @@ components:
           - jsonb_array
         value:
           description: Filter value (string, number, boolean, or array).
-    ExploreRequest:
+    Status:
       type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Filter'
-        currency:
+        type:
           type: string
-          description: ISO 4217 currency code (default USD).
-        sort_order:
+          description: success or error.
+        response_id:
           type: string
-        bounding_box:
-          type: object
-          description: Geographic bounding box for spatial filtering.
+        message:
+          type: string
+    PageInfo:
+      type: object
+      properties:
+        page_size:
+          type: integer
+        offset:
+          type: integer
+    Pagination:
+      type: object
+      properties:
+        page_size:
+          type: integer
+        offset:
+          type: integer
     MarketSearchResponse:
       type: object
       properties:
@@ -411,43 +426,6 @@ components:
                 $ref: '#/components/schemas/MarketSearchResult'
         status:
           $ref: '#/components/schemas/Status'
-    Pagination:
-      type: object
-      properties:
-        page_size:
-          type: integer
-        offset:
-          type: integer
-    ResponseEnvelope:
-      type: object
-      properties:
-        payload:
-          type: object
-          description: Endpoint-specific data object.
-        status:
-          $ref: '#/components/schemas/Status'
-  parameters:
-    MarketId:
-      name: marketId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Unique identifier of the market.
-    CountryCode:
-      name: countryCode
-      in: path
-      required: true
-      schema:
-        type: string
-      description: ISO country code.
-    SubmarketId:
-      name: submarketId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Unique identifier of the submarket.
   responses:
     Unauthorized:
       description: Missing or invalid Bearer token.
@@ -455,6 +433,28 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ResponseEnvelope'
+  parameters:
+    CountryCode:
+      name: countryCode
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ISO country code.
+    MarketId:
+      name: marketId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the market.
+    SubmarketId:
+      name: submarketId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the submarket.
   securitySchemes:
     bearerAuth:
       type: http

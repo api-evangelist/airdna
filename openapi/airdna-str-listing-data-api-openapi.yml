@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AirDNA Enterprise Market Data STR Listing Data API
+  title: AirDNA Enterprise STR Listing Data API
   description: The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.
   termsOfService: https://www.airdna.co/terms-of-service
   contact:
@@ -20,7 +20,7 @@ paths:
       operationId: searchListings
       tags:
       - STR Listing Data
-      summary: Search listings by term or coordinates.
+      summary: Search listings by term or coordinates
       requestBody:
         required: true
         content:
@@ -41,7 +41,7 @@ paths:
       operationId: exploreMarketListings
       tags:
       - STR Listing Data
-      summary: Explore listings within a market.
+      summary: Explore listings within a market
       parameters:
       - $ref: '#/components/parameters/MarketId'
       requestBody:
@@ -64,7 +64,7 @@ paths:
       operationId: exploreListingsRadius
       tags:
       - STR Listing Data
-      summary: Explore listings within a radius of coordinates.
+      summary: Explore listings within a radius of coordinates
       requestBody:
         required: true
         content:
@@ -85,7 +85,7 @@ paths:
       operationId: getListing
       tags:
       - STR Listing Data
-      summary: Fetch details for a specific listing.
+      summary: Fetch details for a specific listing
       parameters:
       - $ref: '#/components/parameters/ListingId'
       responses:
@@ -102,7 +102,7 @@ paths:
       operationId: getListingsDetails
       tags:
       - STR Listing Data
-      summary: Fetch details for multiple listings.
+      summary: Fetch details for multiple listings
       requestBody:
         required: true
         content:
@@ -128,7 +128,7 @@ paths:
       operationId: getListingHistoricalMetrics
       tags:
       - STR Listing Data
-      summary: Historical performance metrics for a listing.
+      summary: Historical performance metrics for a listing
       parameters:
       - $ref: '#/components/parameters/ListingId'
       requestBody:
@@ -151,7 +151,7 @@ paths:
       operationId: getListingComps
       tags:
       - STR Listing Data
-      summary: Fetch comparable listings (comp set) for a listing.
+      summary: Fetch comparable listings (comp set) for a listing
       parameters:
       - $ref: '#/components/parameters/ListingId'
       requestBody:
@@ -174,7 +174,7 @@ paths:
       operationId: getListingFuturePricing
       tags:
       - STR Listing Data
-      summary: Future pricing for a listing.
+      summary: Future pricing for a listing
       parameters:
       - $ref: '#/components/parameters/ListingId'
       requestBody:
@@ -216,16 +216,31 @@ components:
           type: string
         pagination:
           $ref: '#/components/schemas/Pagination'
-    Status:
+    ResponseEnvelope:
       type: object
       properties:
-        type:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
+    ExploreRequest:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        currency:
           type: string
-          description: success or error.
-        response_id:
+          description: ISO 4217 currency code (default USD).
+        sort_order:
           type: string
-        message:
-          type: string
+        bounding_box:
+          type: object
+          description: Geographic bounding box for spatial filtering.
     Filter:
       type: object
       description: Filter object applied to explore/metrics queries.
@@ -247,23 +262,16 @@ components:
           - jsonb_array
         value:
           description: Filter value (string, number, boolean, or array).
-    ExploreRequest:
+    Status:
       type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Filter'
-        currency:
+        type:
           type: string
-          description: ISO 4217 currency code (default USD).
-        sort_order:
+          description: success or error.
+        response_id:
           type: string
-        bounding_box:
-          type: object
-          description: Geographic bounding box for spatial filtering.
+        message:
+          type: string
     Pagination:
       type: object
       properties:
@@ -271,29 +279,6 @@ components:
           type: integer
         offset:
           type: integer
-    ResponseEnvelope:
-      type: object
-      properties:
-        payload:
-          type: object
-          description: Endpoint-specific data object.
-        status:
-          $ref: '#/components/schemas/Status'
-  parameters:
-    MarketId:
-      name: marketId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Unique identifier of the market.
-    ListingId:
-      name: listingId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Unique identifier of the listing.
   responses:
     Unauthorized:
       description: Missing or invalid Bearer token.
@@ -301,6 +286,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ResponseEnvelope'
+  parameters:
+    ListingId:
+      name: listingId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the listing.
+    MarketId:
+      name: marketId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the market.
   securitySchemes:
     bearerAuth:
       type: http

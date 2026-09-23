@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AirDNA Enterprise Market Data Smart Rates API
+  title: AirDNA Enterprise Smart Rates API
   description: The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.
   termsOfService: https://www.airdna.co/terms-of-service
   contact:
@@ -20,7 +20,7 @@ paths:
       operationId: getSmartRatesBase
       tags:
       - Smart Rates
-      summary: Fetch pricing strategy base rates for a listing.
+      summary: Fetch pricing strategy base rates for a listing
       parameters:
       - $ref: '#/components/parameters/ListingId'
       responses:
@@ -36,7 +36,7 @@ paths:
       operationId: getSmartRates
       tags:
       - Smart Rates
-      summary: Fetch smart rates for a listing.
+      summary: Fetch smart rates for a listing
       parameters:
       - $ref: '#/components/parameters/ListingId'
       requestBody:
@@ -55,6 +55,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseEnvelope'
   parameters:
     ListingId:
       name: listingId
@@ -63,24 +70,15 @@ components:
       schema:
         type: string
       description: Unique identifier of the listing.
-  responses:
-    Unauthorized:
-      description: Missing or invalid Bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ResponseEnvelope'
   schemas:
-    Status:
+    ResponseEnvelope:
       type: object
       properties:
-        type:
-          type: string
-          description: success or error.
-        response_id:
-          type: string
-        message:
-          type: string
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
     ExploreRequest:
       type: object
       properties:
@@ -119,6 +117,16 @@ components:
           - jsonb_array
         value:
           description: Filter value (string, number, boolean, or array).
+    Status:
+      type: object
+      properties:
+        type:
+          type: string
+          description: success or error.
+        response_id:
+          type: string
+        message:
+          type: string
     Pagination:
       type: object
       properties:
@@ -126,14 +134,6 @@ components:
           type: integer
         offset:
           type: integer
-    ResponseEnvelope:
-      type: object
-      properties:
-        payload:
-          type: object
-          description: Endpoint-specific data object.
-        status:
-          $ref: '#/components/schemas/Status'
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: AirDNA Enterprise Market Data Rentalizer Lead Gen API
+  title: AirDNA Enterprise Rentalizer Lead Gen API
   description: The AirDNA Enterprise API exposes short-term rental market analytics and individual property data for Airbnb and Vrbo. It is organized into Market Data, Property Valuations & Comps (STR listing data and Rentalizer), Rentalizer Lead Gen, and Smart Rates Data. All requests are authenticated with a Bearer token obtained from AirDNA sales.
   termsOfService: https://www.airdna.co/terms-of-service
   contact:
@@ -20,7 +20,7 @@ paths:
       operationId: rentalizerLeadGenSummary
       tags:
       - Rentalizer Lead Gen
-      summary: Summarized performance estimate for lead generation.
+      summary: Summarized performance estimate for lead generation
       requestBody:
         required: true
         content:
@@ -37,24 +37,15 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid Bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ResponseEnvelope'
   schemas:
-    Status:
+    ResponseEnvelope:
       type: object
       properties:
-        type:
-          type: string
-          description: success or error.
-        response_id:
-          type: string
-        message:
-          type: string
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
     RentalizerRequest:
       type: object
       properties:
@@ -69,14 +60,23 @@ components:
         currency:
           type: string
           description: ISO 4217 currency code (default USD).
-    ResponseEnvelope:
+    Status:
       type: object
       properties:
-        payload:
-          type: object
-          description: Endpoint-specific data object.
-        status:
-          $ref: '#/components/schemas/Status'
+        type:
+          type: string
+          description: success or error.
+        response_id:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseEnvelope'
   securitySchemes:
     bearerAuth:
       type: http
