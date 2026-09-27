@@ -193,29 +193,39 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    ListingId:
+      name: listingId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the listing.
+    MarketId:
+      name: marketId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the market.
   schemas:
-    MetricsRequest:
+    Pagination:
       type: object
       properties:
-        num_months:
+        page_size:
           type: integer
-          minimum: 12
-          maximum: 60
-          description: Number of months of metrics to return (12-60).
-        currency:
-          type: string
-          description: ISO 4217 currency code (default USD).
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Filter'
-    ListingSearchRequest:
+        offset:
+          type: integer
+    Status:
       type: object
       properties:
-        search_term:
+        type:
           type: string
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+          description: success or error.
+        response_id:
+          type: string
+        message:
+          type: string
     ResponseEnvelope:
       type: object
       properties:
@@ -224,23 +234,6 @@ components:
           description: Endpoint-specific data object.
         status:
           $ref: '#/components/schemas/Status'
-    ExploreRequest:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Filter'
-        currency:
-          type: string
-          description: ISO 4217 currency code (default USD).
-        sort_order:
-          type: string
-        bounding_box:
-          type: object
-          description: Geographic bounding box for spatial filtering.
     Filter:
       type: object
       description: Filter object applied to explore/metrics queries.
@@ -262,23 +255,45 @@ components:
           - jsonb_array
         value:
           description: Filter value (string, number, boolean, or array).
-    Status:
+    ListingSearchRequest:
       type: object
       properties:
-        type:
+        search_term:
           type: string
-          description: success or error.
-        response_id:
-          type: string
-        message:
-          type: string
-    Pagination:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ExploreRequest:
       type: object
       properties:
-        page_size:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+        sort_order:
+          type: string
+        bounding_box:
+          type: object
+          description: Geographic bounding box for spatial filtering.
+    MetricsRequest:
+      type: object
+      properties:
+        num_months:
           type: integer
-        offset:
-          type: integer
+          minimum: 12
+          maximum: 60
+          description: Number of months of metrics to return (12-60).
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
   responses:
     Unauthorized:
       description: Missing or invalid Bearer token.
@@ -286,21 +301,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ResponseEnvelope'
-  parameters:
-    ListingId:
-      name: listingId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Unique identifier of the listing.
-    MarketId:
-      name: marketId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Unique identifier of the market.
   securitySchemes:
     bearerAuth:
       type: http

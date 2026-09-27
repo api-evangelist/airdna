@@ -38,6 +38,16 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Status:
+      type: object
+      properties:
+        type:
+          type: string
+          description: success or error.
+        response_id:
+          type: string
+        message:
+          type: string
     ResponseEnvelope:
       type: object
       properties:
@@ -60,16 +70,6 @@ components:
         currency:
           type: string
           description: ISO 4217 currency code (default USD).
-    Status:
-      type: object
-      properties:
-        type:
-          type: string
-          description: success or error.
-        response_id:
-          type: string
-        message:
-          type: string
   responses:
     Unauthorized:
       description: Missing or invalid Bearer token.

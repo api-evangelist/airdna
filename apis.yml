@@ -41,7 +41,7 @@ tags:
 - Short-Term Rental
 - Vacation Rentals
 - Market Data
-- Real-Estate
+- Real Estate
 - Analytics
 tags_raw:
 - Short-Term Rental
@@ -49,6 +49,7 @@ tags_raw:
 - Market Data
 - Real Estate
 - Analytics
+- Real-Estate
 created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.23'

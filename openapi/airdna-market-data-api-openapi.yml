@@ -302,39 +302,37 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    MetricsRequest:
+    MarketSearchRequest:
       type: object
       properties:
-        num_months:
+        search_term:
+          type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    PageInfo:
+      type: object
+      properties:
+        page_size:
           type: integer
-          minimum: 12
-          maximum: 60
-          description: Number of months of metrics to return (12-60).
-        currency:
-          type: string
-          description: ISO 4217 currency code (default USD).
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Filter'
-    MarketSearchResult:
+        offset:
+          type: integer
+    Pagination:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
+        page_size:
+          type: integer
+        offset:
+          type: integer
+    Status:
+      type: object
+      properties:
         type:
           type: string
-          description: Market type (neighborhood, city, etc.).
-        listing_count:
-          type: integer
-        location_name:
+          description: success or error.
+        response_id:
           type: string
-        location:
-          type: object
-        legacy_location:
-          type: object
+        message:
+          type: string
     ResponseEnvelope:
       type: object
       properties:
@@ -343,30 +341,20 @@ components:
           description: Endpoint-specific data object.
         status:
           $ref: '#/components/schemas/Status'
-    MarketSearchRequest:
+    MarketSearchResponse:
       type: object
       properties:
-        search_term:
-          type: string
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    ExploreRequest:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Filter'
-        currency:
-          type: string
-          description: ISO 4217 currency code (default USD).
-        sort_order:
-          type: string
-        bounding_box:
+        payload:
           type: object
-          description: Geographic bounding box for spatial filtering.
+          properties:
+            page_info:
+              $ref: '#/components/schemas/PageInfo'
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/MarketSearchResult'
+        status:
+          $ref: '#/components/schemas/Status'
     Filter:
       type: object
       description: Filter object applied to explore/metrics queries.
@@ -388,59 +376,57 @@ components:
           - jsonb_array
         value:
           description: Filter value (string, number, boolean, or array).
-    Status:
+    MarketSearchResult:
       type: object
       properties:
+        id:
+          type: string
+        name:
+          type: string
         type:
           type: string
-          description: success or error.
-        response_id:
+          description: Market type (neighborhood, city, etc.).
+        listing_count:
+          type: integer
+        location_name:
           type: string
-        message:
-          type: string
-    PageInfo:
-      type: object
-      properties:
-        page_size:
-          type: integer
-        offset:
-          type: integer
-    Pagination:
-      type: object
-      properties:
-        page_size:
-          type: integer
-        offset:
-          type: integer
-    MarketSearchResponse:
-      type: object
-      properties:
-        payload:
+        location:
           type: object
-          properties:
-            page_info:
-              $ref: '#/components/schemas/PageInfo'
-            results:
-              type: array
-              items:
-                $ref: '#/components/schemas/MarketSearchResult'
-        status:
-          $ref: '#/components/schemas/Status'
-  responses:
-    Unauthorized:
-      description: Missing or invalid Bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ResponseEnvelope'
+        legacy_location:
+          type: object
+    ExploreRequest:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+        sort_order:
+          type: string
+        bounding_box:
+          type: object
+          description: Geographic bounding box for spatial filtering.
+    MetricsRequest:
+      type: object
+      properties:
+        num_months:
+          type: integer
+          minimum: 12
+          maximum: 60
+          description: Number of months of metrics to return (12-60).
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
   parameters:
-    CountryCode:
-      name: countryCode
-      in: path
-      required: true
-      schema:
-        type: string
-      description: ISO country code.
     MarketId:
       name: marketId
       in: path
@@ -448,6 +434,13 @@ components:
       schema:
         type: string
       description: Unique identifier of the market.
+    CountryCode:
+      name: countryCode
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ISO country code.
     SubmarketId:
       name: submarketId
       in: path
@@ -455,6 +448,13 @@ components:
       schema:
         type: string
       description: Unique identifier of the submarket.
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseEnvelope'
   securitySchemes:
     bearerAuth:
       type: http
