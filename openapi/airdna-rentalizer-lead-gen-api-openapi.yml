@@ -38,6 +38,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ResponseEnvelope:
+      type: object
+      properties:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
     Status:
       type: object
       properties:
@@ -48,14 +56,6 @@ components:
           type: string
         message:
           type: string
-    ResponseEnvelope:
-      type: object
-      properties:
-        payload:
-          type: object
-          description: Endpoint-specific data object.
-        status:
-          $ref: '#/components/schemas/Status'
     RentalizerRequest:
       type: object
       properties:
