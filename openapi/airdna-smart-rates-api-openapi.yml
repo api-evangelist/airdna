@@ -55,7 +55,57 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    ListingId:
+      name: listingId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the listing.
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseEnvelope'
   schemas:
+    Status:
+      type: object
+      properties:
+        type:
+          type: string
+          description: success or error.
+        response_id:
+          type: string
+        message:
+          type: string
+    ResponseEnvelope:
+      type: object
+      properties:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
+    ExploreRequest:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        currency:
+          type: string
+          description: ISO 4217 currency code (default USD).
+        sort_order:
+          type: string
+        bounding_box:
+          type: object
+          description: Geographic bounding box for spatial filtering.
     Filter:
       type: object
       description: Filter object applied to explore/metrics queries.
@@ -84,56 +134,6 @@ components:
           type: integer
         offset:
           type: integer
-    ResponseEnvelope:
-      type: object
-      properties:
-        payload:
-          type: object
-          description: Endpoint-specific data object.
-        status:
-          $ref: '#/components/schemas/Status'
-    Status:
-      type: object
-      properties:
-        type:
-          type: string
-          description: success or error.
-        response_id:
-          type: string
-        message:
-          type: string
-    ExploreRequest:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/Filter'
-        currency:
-          type: string
-          description: ISO 4217 currency code (default USD).
-        sort_order:
-          type: string
-        bounding_box:
-          type: object
-          description: Geographic bounding box for spatial filtering.
-  parameters:
-    ListingId:
-      name: listingId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Unique identifier of the listing.
-  responses:
-    Unauthorized:
-      description: Missing or invalid Bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ResponseEnvelope'
   securitySchemes:
     bearerAuth:
       type: http

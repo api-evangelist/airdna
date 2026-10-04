@@ -193,35 +193,22 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    MarketId:
+      name: marketId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the market.
+    ListingId:
+      name: listingId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the listing.
   schemas:
-    Filter:
-      type: object
-      description: Filter object applied to explore/metrics queries.
-      properties:
-        field:
-          type: string
-          description: Attribute name to filter on.
-        type:
-          type: string
-          enum:
-          - select
-          - multi_select
-          - gt
-          - gte
-          - lt
-          - lte
-          - range
-          - jsonb_boolean
-          - jsonb_array
-        value:
-          description: Filter value (string, number, boolean, or array).
-    Pagination:
-      type: object
-      properties:
-        page_size:
-          type: integer
-        offset:
-          type: integer
     ListingSearchRequest:
       type: object
       properties:
@@ -229,14 +216,6 @@ components:
           type: string
         pagination:
           $ref: '#/components/schemas/Pagination'
-    ResponseEnvelope:
-      type: object
-      properties:
-        payload:
-          type: object
-          description: Endpoint-specific data object.
-        status:
-          $ref: '#/components/schemas/Status'
     Status:
       type: object
       properties:
@@ -247,6 +226,14 @@ components:
           type: string
         message:
           type: string
+    ResponseEnvelope:
+      type: object
+      properties:
+        payload:
+          type: object
+          description: Endpoint-specific data object.
+        status:
+          $ref: '#/components/schemas/Status'
     MetricsRequest:
       type: object
       properties:
@@ -279,21 +266,34 @@ components:
         bounding_box:
           type: object
           description: Geographic bounding box for spatial filtering.
-  parameters:
-    MarketId:
-      name: marketId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Unique identifier of the market.
-    ListingId:
-      name: listingId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Unique identifier of the listing.
+    Filter:
+      type: object
+      description: Filter object applied to explore/metrics queries.
+      properties:
+        field:
+          type: string
+          description: Attribute name to filter on.
+        type:
+          type: string
+          enum:
+          - select
+          - multi_select
+          - gt
+          - gte
+          - lt
+          - lte
+          - range
+          - jsonb_boolean
+          - jsonb_array
+        value:
+          description: Filter value (string, number, boolean, or array).
+    Pagination:
+      type: object
+      properties:
+        page_size:
+          type: integer
+        offset:
+          type: integer
   responses:
     Unauthorized:
       description: Missing or invalid Bearer token.
