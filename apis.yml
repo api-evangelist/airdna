@@ -51,7 +51,7 @@ tags_raw:
 - Analytics
 - Real-Estate
 created: '2026-06-21'
-modified: '2026-06-21'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: airdna:airdna-market-data-api
@@ -125,6 +125,8 @@ apis:
   - type: APIReference
     url: https://airdna.redoc.ly/
 common:
+- url: https://www.airdna.co/press
+  type: Blog
 - type: AgenticAccess
   url: agentic-access/airdna-agentic-access.yml
 - type: DomainSecurity
