@@ -1,4 +1,4 @@
-# AirDNA (airdna)
+# AirDNA
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,140 +66,131 @@
 
 AirDNA provides short-term rental market data and analytics for Airbnb and Vrbo, tracking over 10 million listings across 120,000+ markets. The AirDNA Enterprise API exposes market metrics, STR listing data, comparable property sets, Rentalizer revenue estimates, and Smart Rates pricing through a Bearer-authenticated REST interface.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/airdna/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/airdna/refs/heads/main/apis.yml)
+**Areas:** Short-Term Rental · Vacation Rentals · Market Data · Real Estate · Analytics
 
-## Tags
+## AirDNA on APIs.io
 
-- Short-Term Rental
-- Vacation Rental
-- Market Data
-- Real Estate
-- Analytics
+Everything profiled for AirDNA is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/airdna/](https://apis.io/providers/airdna/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [AirDNA Market Data API](https://apis.io/apis/airdna/airdna-market-data-api/) — Market and submarket discovery, metrics, and future pricing.
+- [AirDNA Rentalizer API](https://apis.io/apis/airdna/airdna-rentalizer-api/) — Revenue estimates for individual and bulk addresses.
+- [AirDNA Rentalizer Lead Gen API](https://apis.io/apis/airdna/airdna-rentalizer-lead-gen-api/) — Summarized performance estimates for lead generation.
+- [AirDNA Smart Rates API](https://apis.io/apis/airdna/airdna-smart-rates-api/) — Pricing strategy base rates and smart rates for listings.
+- [AirDNA STR Listing Data API](https://apis.io/apis/airdna/airdna-str-listing-data-api/) — Short-term rental listing search, details, history, and comps.
 
-## APIs
+### Published properties
 
-### AirDNA Market Search
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Search for markets and submarkets by search term or coordinates, explore markets within a country, and resolve whether AirDNA has a location mapped and under what market type.
+#### MCP servers (1)
 
-- **Human URL:** [https://docs.airdna.co/](https://docs.airdna.co/)
-- **Base URL:** `https://api.airdna.co/api/enterprise/v2`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [airdna](https://apis.io/servers/airdna/airdna/)
 
-- Market Search
-- Markets
-- Submarkets
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://docs.airdna.co/)
-- [API Reference](https://airdna.redoc.ly/)
-- [OpenAPI](openapi/airdna-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/airdna.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/airdna.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Airdna Agentic Access](https://apis.io/agentic-access/airdna/airdna-agentic-access/)
 
-### AirDNA Market Stats
+#### Collections (6)
 
-Time-series market and submarket metrics including occupancy, revenue, average daily rate (ADR), RevPAR, booking lead time, length of stay, active listings, and future daily pricing across 12-60 month windows.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://docs.airdna.co/](https://docs.airdna.co/)
-- **Base URL:** `https://api.airdna.co/api/enterprise/v2`
+- [AirDNA Enterprise API](https://apis.io/collections/airdna/open-airdna/)
+- [AirDNA Enterprise Market Data API](https://apis.io/collections/airdna/open-airdna-market-data-api/)
+- [AirDNA Enterprise Market Data Rentalizer API](https://apis.io/collections/airdna/open-airdna-rentalizer-api/)
+- [AirDNA Enterprise Market Data Rentalizer Lead Gen API](https://apis.io/collections/airdna/open-airdna-rentalizer-lead-gen-api/)
+- [AirDNA Enterprise Market Data Smart Rates API](https://apis.io/collections/airdna/open-airdna-smart-rates-api/)
+- [AirDNA Enterprise Market Data STR Listing Data API](https://apis.io/collections/airdna/open-airdna-str-listing-data-api/)
 
-#### Tags
+#### Security (2)
 
-- Market Metrics
-- Occupancy
-- Revenue
-- ADR
-- RevPAR
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Airdna Authentication](https://apis.io/security/airdna/airdna-authentication/)
+- [Airdna Domain Security](https://apis.io/security/airdna/airdna-domain-security/)
 
-- [Documentation](https://docs.airdna.co/)
-- [API Reference](https://airdna.redoc.ly/)
-- [OpenAPI](openapi/airdna-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/airdna.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/airdna.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### AirDNA Property/Listing Data
+Published plans, tiers and prices.
 
-Search and explore individual short-term rental listings by term, coordinates, country, market, submarket, or radius; fetch listing details and historical performance metrics for one or many listings.
+- [Airdna Plans Pricing](https://apis.io/plans/airdna/airdna-plans-pricing/)
 
-- **Human URL:** [https://docs.airdna.co/](https://docs.airdna.co/)
-- **Base URL:** `https://api.airdna.co/api/enterprise/v2`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Listings
-- STR Data
-- Properties
+- [Airdna Rate Limits](https://apis.io/rate-limits/airdna/airdna-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://docs.airdna.co/)
-- [API Reference](https://airdna.redoc.ly/)
-- [OpenAPI](openapi/airdna-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/airdna.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/airdna.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### AirDNA Rentalizer Estimates
+- [Airdna Finops](https://apis.io/finops/airdna/airdna-finops/)
 
-Rentalizer revenue estimates that project how an address could perform as a short-term rental over the next twelve months, with detailed single-address, bulk multi-address, and summarized lead-gen estimate endpoints.
+## Where to find this API
 
-- **Human URL:** [https://docs.airdna.co/](https://docs.airdna.co/)
-- **Base URL:** `https://api.airdna.co/api/enterprise/v2`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Rentalizer
-- Revenue Estimates
-- Valuations
-
-#### Properties
-
-- [Documentation](https://docs.airdna.co/)
-- [API Reference](https://airdna.redoc.ly/)
-- [OpenAPI](openapi/airdna-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/airdna.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/airdna.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### AirDNA Comps
-
-Fetch the most comparable rental properties for a given listing, returning listing details for a competitive comp set used to benchmark short-term rental performance.
-
-- **Human URL:** [https://docs.airdna.co/](https://docs.airdna.co/)
-- **Base URL:** `https://api.airdna.co/api/enterprise/v2`
-
-#### Tags
-
-- Comps
-- Comparable Listings
-- Comp Set
-
-#### Properties
-
-- [Documentation](https://docs.airdna.co/)
-- [API Reference](https://airdna.redoc.ly/)
-- [OpenAPI](openapi/airdna-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/airdna.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/airdna.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/airdna)
 - [Website](https://www.airdna.co)
 - [Documentation](https://docs.airdna.co/)
-- [Plans](plans/airdna-plans-pricing.yml)
-- [Rate Limits](rate-limits/airdna-rate-limits.yml)
-- [Fin Ops](finops/airdna-finops.yml)
+- [Blog](https://www.airdna.co/press)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.8** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 53.3 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 5.3 |
+
+**Agent readiness 39.7** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/airdna/](https://apis.io/providers/airdna/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for AirDNA: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/airdna/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
