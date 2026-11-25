@@ -72,13 +72,14 @@ AirDNA provides short-term rental market data and analytics for Airbnb and Vrbo,
 
 Everything profiled for AirDNA is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/airdna/](https://apis.io/providers/airdna/)** — or go straight to one of the APIs or properties below.
 
-### APIs (5)
+### APIs (6)
 
 - [AirDNA Market Data API](https://apis.io/apis/airdna/airdna-market-data-api/) — Market and submarket discovery, metrics, and future pricing.
-- [AirDNA Rentalizer API](https://apis.io/apis/airdna/airdna-rentalizer-api/) — Revenue estimates for individual and bulk addresses.
-- [AirDNA Rentalizer Lead Gen API](https://apis.io/apis/airdna/airdna-rentalizer-lead-gen-api/) — Summarized performance estimates for lead generation.
 - [AirDNA Smart Rates API](https://apis.io/apis/airdna/airdna-smart-rates-api/) — Pricing strategy base rates and smart rates for listings.
-- [AirDNA STR Listing Data API](https://apis.io/apis/airdna/airdna-str-listing-data-api/) — Short-term rental listing search, details, history, and comps.
+- [AirDNA Listing Data API](https://apis.io/apis/airdna/airdna-listing-data-api/) — This section provides data for individual Short-Term Rental listings from Airbnb, Vrbo, and Booking.com. It is ideal for searching for listings within…
+- [AirDNA Rentalizer Data API](https://apis.io/apis/airdna/airdna-rentalizer-data-api/) — Rentalizer uses AirDNA's proprietary algorithms and data to provide Performance Estimations for addresses or locations. ### What is Rentalizer? Across our…
+- [AirDNA Rentalizer Summary Data API](https://apis.io/apis/airdna/airdna-rentalizer-summary-data-api/) — Rentalizer uses AirDNA's proprietary algorithms and data to provide Performance Estimates for addresses or locations.
+- [AirDNA Submarket Data API](https://apis.io/apis/airdna/airdna-submarket-data-api/) — Whether you're looking to discover trending Submarkets or learn about a Submarket's historical performance, these endpoints can support your research. ###…
 
 ### Published properties
 
@@ -94,7 +95,7 @@ Model Context Protocol servers that expose the API to agents.
 
 Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Airdna Agentic Access](https://apis.io/agentic-access/airdna/airdna-agentic-access/)
+- [AirDNA Agentic Access](https://apis.io/agentic-access/airdna/airdna-agentic-access/)
 
 #### Collections (6)
 
@@ -107,30 +108,36 @@ Postman and Open Collection request collections.
 - [AirDNA Enterprise Market Data Smart Rates API](https://apis.io/collections/airdna/open-airdna-smart-rates-api/)
 - [AirDNA Enterprise Market Data STR Listing Data API](https://apis.io/collections/airdna/open-airdna-str-listing-data-api/)
 
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [AirDNA API Rules](https://apis.io/rules/airdna/airdna-rules/)
+
 #### Security (2)
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [Airdna Authentication](https://apis.io/security/airdna/airdna-authentication/)
-- [Airdna Domain Security](https://apis.io/security/airdna/airdna-domain-security/)
+- [AirDNA Authentication](https://apis.io/security/airdna/airdna-authentication/)
+- [AirDNA Domain Security](https://apis.io/security/airdna/airdna-domain-security/)
 
 #### Plans and pricing (1)
 
 Published plans, tiers and prices.
 
-- [Airdna Plans Pricing](https://apis.io/plans/airdna/airdna-plans-pricing/)
+- [AirDNA Plans Pricing](https://apis.io/plans/airdna/airdna-plans-pricing/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [Airdna Rate Limits](https://apis.io/rate-limits/airdna/airdna-rate-limits/)
+- [AirDNA Rate Limits](https://apis.io/rate-limits/airdna/airdna-rate-limits/)
 
 #### FinOps (1)
 
 What the API costs to run, by operation.
 
-- [Airdna Finops](https://apis.io/finops/airdna/airdna-finops/)
+- [AirDNA Finops](https://apis.io/finops/airdna/airdna-finops/)
 
 ## Where to find this API
 
@@ -142,18 +149,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 26.8** — thin · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 28.7** — thin · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
-| Discoverability | 68.3 |
-| Contract quality | 53.3 |
-| Contract governance | 0.0 |
-| Operational transparency | 5.3 |
+| Discoverability | 75.0 |
+| Contract quality | 56.2 |
+| Contract governance | 13.6 |
+| Operational transparency | 4.8 |
 | Developer ergonomics | 31.0 |
-| Access clarity | 5.3 |
+| Access clarity | 4.3 |
 
-**Agent readiness 39.7** — agent-ready (gated down from agent-native)
+**Agent readiness 44.4** — agent-ready (gated down from agent-native)
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -163,7 +170,7 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | MCP Server | verified |
 | Auth Clarity | served (partial credit) |
 | Idempotency | — |
-| Error Semantics | — |
+| Error Semantics | verified |
 | OpenAPI Examples | — |
 | Rate Limit Signal | derived (partial credit) |
 | Event Surface Described | — |
@@ -178,8 +185,12 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Agentic Commerce | — |
 | Pagination Ratio | na |
 | Operation Distinctiveness | distinct |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
-**Regulatory alignment 16.7** — Securities & Market Data
+**Regulatory alignment 11.1** — Securities & Market Data
 
 The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/airdna/](https://apis.io/providers/airdna/).
 
